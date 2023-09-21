@@ -16,11 +16,11 @@ int main()
 
     gpuff.clock_start();
     gpuff.time_update();
+    gpuff.clock_end();
     
     gpuff.find_minmax();
     
     gpuff.conc_calc();
-    gpuff.clock_end();
 
     return 0;
 }
