@@ -16,7 +16,7 @@ int main()
 
     gpuff.clock_start();
     gpuff.time_update();
-    gpuff.clock_end();//////
+    gpuff.clock_end();//
     
     gpuff.find_minmax();
     
