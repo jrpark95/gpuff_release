@@ -14,16 +14,24 @@ void Gpuff::puff_output_ASCII(int timestep){
 
     std::ostringstream filenameStream;
 
-    std::string path = "./output";
+    std::string path;    
 
-#ifdef _WIN32
-    _mkdir(path.c_str());
-#else
-    mkdir(path.c_str(), 0777);
-#endif
+    #ifdef _WIN32
 
-    filenameStream << "./output/puff_" << std::setfill('0') 
-    << std::setw(5) << timestep << "stp.vtk";
+        path = ".\\output";
+        _mkdir(path.c_str());
+        filenameStream << ".\\output\\puff_" << std::setfill('0') 
+        << std::setw(5) << timestep << "stp.vtk";
+
+    #else
+
+        path = "./output";
+        mkdir(path.c_str(), 0777);
+        filenameStream << "./output/puff_" << std::setfill('0') 
+        << std::setw(5) << timestep << "stp.vtk";
+
+    #endif
+
 
     std::string filename = filenameStream.str();
 
@@ -69,21 +77,20 @@ void Gpuff::puff_output_binary(int timestep){
 
     std::ostringstream filenameStream;
 
-    std::string path = "./output";
+    std::string path;
 
     #ifdef _WIN32
+        path = ".\\output";
         _mkdir(path.c_str());
+        filenameStream << ".\\output\\puff_" << std::setfill('0') 
+        << std::setw(5) << timestep << ".vtk";
     #else
+        path = "./output";
         mkdir(path.c_str(), 0777);
+        filenameStream << "./output/puff_" << std::setfill('0') 
+        << std::setw(5) << timestep << ".vtk";
     #endif
 
-    // filenameStream << "./output/puff_" << std::setfill('0') 
-    //                << std::setw(5) << timestep << "stp.vtk";
-
-    //filenameStream << "./output/puff_" << timestep << "stp.vtk";
-
-    filenameStream << "./output/puff_" << std::setfill('0') 
-                   << std::setw(5) << timestep << ".vtk";
 
     std::string filename = filenameStream.str();
 
@@ -159,15 +166,18 @@ void Gpuff::puff_output_binary(int timestep){
 
 void Gpuff::grid_output_binary(RectangleGrid& rect, float* h_concs){
 
-    std::string path = "./grids";
+    std::string path;
+    std::string filename;
 
     #ifdef _WIN32
+        path = ".\\grids";
         _mkdir(path.c_str());
+        filename = ".\\grids\\grid.vtk";
     #else
+        path = "./grids";
         mkdir(path.c_str(), 0777);
+        filename = "./grids/grid.vtk";
     #endif
-
-    std::string filename = "./grids/grid.vtk";
 
     std::ofstream vtkFile(filename, std::ios::binary);
 
@@ -221,18 +231,27 @@ void Gpuff::grid_output_binary(RectangleGrid& rect, float* h_concs){
 
 void Gpuff::grid_output_binary_val(RectangleGrid& rect, float* h_concs){
 
-    std::string path = "./grids";
+    std::string path;
 
     #ifdef _WIN32
+        path = "./grids";
         _mkdir(path.c_str());
     #else
+        path = ".\\grids";
         mkdir(path.c_str(), 0777);
     #endif
 
     for(int zidx = 0; zidx < 22; ++zidx){
 
         std::stringstream ss;
-        ss << "./grids/grid" << std::setw(3) << std::setfill('0') << zidx << ".vtk";
+
+
+        #ifdef _WIN32
+            ss << ".\\grids\\grid" << std::setw(3) << std::setfill('0') << zidx << ".vtk";
+        #else
+            ss << "./grids/grid" << std::setw(3) << std::setfill('0') << zidx << ".vtk";
+        #endif
+
         std::string filename = ss.str();
     
         std::ofstream vtkFile(filename, std::ios::binary);
@@ -288,16 +307,19 @@ void Gpuff::grid_output_binary_val(RectangleGrid& rect, float* h_concs){
 
 void Gpuff::grid_output_csv(RectangleGrid& rect, float* h_concs){
 
-    std::string path = "./grids_csv";
+    std::string path;
+    std::stringstream ss;
 
     #ifdef _WIN32
+        path = ".\\grids_csv";
         _mkdir(path.c_str());
+        ss << ".\\grids_csv\\grid.csv";
     #else
+        path = "./grids_csv";
         mkdir(path.c_str(), 0777);
+        ss << "./grids_csv/grid.csv";
     #endif
 
-    std::stringstream ss;
-    ss << "./grids_csv/grid.csv";
     std::string filename = ss.str();
 
     std::ofstream csvFile(filename);
@@ -312,13 +334,12 @@ void Gpuff::grid_output_csv(RectangleGrid& rect, float* h_concs){
             int index = i * rect.cols + j;
             float conc = h_concs[index];
 
-            // Separate values by comma, but not at the end of the line
             csvFile << conc;
             if (j < rect.cols - 1) {
                 csvFile << ",";
             }
         }
-        csvFile << "\n"; // New line at the end of each row
+        csvFile << "\n";
     }
 
     csvFile.close();

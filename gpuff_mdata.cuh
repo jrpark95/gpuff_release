@@ -48,7 +48,12 @@ void Gpuff::read_meteorological_data(
     const char* filename_etas)
 {
 
-    const char* path = "./input/ldapsdata/";
+    #ifdef _WIN32
+        const char* path = ".\\input\\ldapsdata\\";
+    #else
+        const char* path = "./input/ldapsdata/";
+    #endif
+
     char filepath_pres[256], filepath_unis[256], filepath_etas[256];
 
     sprintf(filepath_pres, "%s%s", path, filename_pres);

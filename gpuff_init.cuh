@@ -2,7 +2,17 @@
 
 void Gpuff::read_simulation_config(){
 
-    FILE* file = fopen("./input/setting.txt", "r");
+    FILE* file;
+    FILE* sourceFile;
+
+    #ifdef _WIN32
+        file = fopen(".\\input\\setting.txt", "r");
+        sourceFile = fopen(".\\input\\source.txt", "r");
+    #else
+        file = fopen("./input/setting.txt", "r");
+        sourceFile = fopen("./input/source.txt", "r");
+    #endif
+
     if (!file){
         std::cerr << "Failed to open setting.txt" << std::endl;
         exit(1);
@@ -35,7 +45,6 @@ void Gpuff::read_simulation_config(){
 
     fclose(file);
 
-    FILE* sourceFile = fopen("./input/source.txt", "r");
     if (!sourceFile){
         std::cerr << "Failed to open source.txt" << std::endl;
         exit(1);
@@ -122,7 +131,13 @@ void Gpuff::read_simulation_config(){
 
 void Gpuff::read_etas_altitudes(){
 
-    FILE* file = fopen("./input/hgt.txt", "r");
+
+    #ifdef _WIN32
+        FILE* file = fopen(".\\input\\hgt.txt", "r");
+    #else
+        FILE* file = fopen("./input/hgt.txt", "r");
+    #endif
+
 
     if (!file){
         std::cerr << "Failed to open setting.txt" << std::endl;
