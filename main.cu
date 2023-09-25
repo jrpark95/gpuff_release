@@ -10,16 +10,15 @@ int main()
 
     gpuff.read_etas_altitudes();
 
+    gpuff.clock_start();
     gpuff.read_meteorological_data("pres.bin", "unis.bin", "etas.bin");
 
+    gpuff.clock_end();
     gpuff.allocate_and_copy_to_device();
 
-    gpuff.clock_start();
     gpuff.time_update();
-    gpuff.clock_end();//
     
     gpuff.find_minmax();
-    
     gpuff.conc_calc();
 
     return 0;

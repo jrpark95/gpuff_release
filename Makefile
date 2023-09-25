@@ -1,9 +1,9 @@
 NVCC = nvcc
-NVCCFLAGS = -O3 -arch=sm_86
+NVCCFLAGS = -O3 -arch=sm_61
 
 ifeq ($(OS),Windows_NT)
     OS_DETECTED := Windows
-    PATH_SEP := \\
+    PATH_SEP := /
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
