@@ -3,3 +3,6 @@ output/*
 grids/*
 grids_csv/*
 gpuff
+gpuff.exe
+gpuff.exp
+gpuff.lib

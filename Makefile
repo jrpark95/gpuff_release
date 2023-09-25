@@ -27,7 +27,11 @@ $(OBJ_PATH)$(PATH_SEP)%.o: %.cu
 	$(NVCC) $(NVCCFLAGS) -c $< -o $@
 
 clean:
+ifeq ($(OS_DETECTED),Windows)
+	del /Q /F $(subst /,\,$(OBJS)) $(TARGET).exe $(TARGET).exp $(TARGET).lib
+else
 	rm -f $(OBJS) $(TARGET)
+endif
 
 $(OBJS): | $(OBJ_PATH)
 

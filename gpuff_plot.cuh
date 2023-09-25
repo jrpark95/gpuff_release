@@ -245,7 +245,6 @@ void Gpuff::grid_output_binary_val(RectangleGrid& rect, float* h_concs){
 
         std::stringstream ss;
 
-
         #ifdef _WIN32
             ss << ".\\grids\\grid" << std::setw(3) << std::setfill('0') << zidx << ".vtk";
         #else
