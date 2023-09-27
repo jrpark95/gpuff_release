@@ -39,8 +39,11 @@ __constant__ int d_nop;
 __constant__ bool d_isRural;
 __constant__ bool d_isPG;
 
-float etas_hgt[dimZ_etas-1];
-__constant__ float d_etas_hgt[dimZ_etas-1];
+float etas_hgt_uv[dimZ_etas-1];
+float etas_hgt_w[dimZ_etas-1];
+
+__constant__ float d_etas_hgt_uv[dimZ_etas-1];
+__constant__ float d_etas_hgt_w[dimZ_etas-1];
 
 class Gpuff
 {

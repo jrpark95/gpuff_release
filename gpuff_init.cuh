@@ -133,9 +133,9 @@ void Gpuff::read_etas_altitudes(){
 
 
     #ifdef _WIN32
-        FILE* file = fopen(".\\input\\hgt.txt", "r");
+        FILE* file = fopen(".\\input\\hgt_uv.txt", "r");
     #else
-        FILE* file = fopen("./input/hgt.txt", "r");
+        FILE* file = fopen("./input/hgt_uv.txt", "r");
     #endif
 
 
@@ -164,11 +164,47 @@ void Gpuff::read_etas_altitudes(){
             token = strtok(nullptr, ":");
             count++;
         }
-        etas_hgt[idx++] = atoi(strtok(val, " "));
+        etas_hgt_uv[idx++] = atoi(strtok(val, " "));
 
     }
 
-    cudaError_t err = cudaMemcpyToSymbol(d_etas_hgt, etas_hgt, sizeof(float) * (dimZ_etas-1));
+    cudaError_t err = cudaMemcpyToSymbol(d_etas_hgt_uv, etas_hgt_uv, sizeof(float) * (dimZ_etas-1));
+    if (err != cudaSuccess) std::cerr << "Failed to copy data to constant memory: " << cudaGetErrorString(err) << std::endl;
+
+    #ifdef _WIN32
+        file = fopen(".\\input\\hgt_w.txt", "r");
+    #else
+        file = fopen("./input/hgt_w.txt", "r");
+    #endif
+
+    if (!file){
+        std::cerr << "Failed to open setting.txt" << std::endl;
+        exit(1);
+    }
+
+    count = 0;
+    idx = 0;
+
+    while(fgets(line, sizeof(line), file)){
+
+        char* token = strtok(line, ":");
+        count = 0;
+        char* val = nullptr;
+
+        while(token){
+            if (count == 4){
+                val = token;
+                break;
+            }
+            token = strtok(nullptr, ":");
+            count++;
+        }
+        etas_hgt_w[idx++] = atof(strtok(val, " "));
+        //printf("hgt_w[%d] = %f\n", idx-1, etas_hgt_w[idx-1]);
+
+    }
+
+    err = cudaMemcpyToSymbol(d_etas_hgt_w, etas_hgt_w, sizeof(float) * (dimZ_etas-1));
     if (err != cudaSuccess) std::cerr << "Failed to copy data to constant memory: " << cudaGetErrorString(err) << std::endl;
 
 }

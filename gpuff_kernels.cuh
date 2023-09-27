@@ -271,18 +271,31 @@ __global__ void move_puffs_by_wind(
 
     int xidx = int(p.x/1500.0);
     int yidx = int(p.y/1500.0);
-    int zidx = 1;
+    int zidx_uv = 1;
+    int zidx_w = 1;
 
     for(int i=0; i<dimZ_etas-1; i++){
-        if(p.z<d_etas_hgt[i]){
-            zidx=i+1;
+        if(p.z<d_etas_hgt_uv[i]){
+            zidx_uv=i+1;
             break;
         }
     }
 
-    if(zidx<0) {
-        printf("Invalid zidx error.\n");
-        zidx = 1;
+    for(int i=0; i<dimZ_etas-1; i++){
+        if(p.z<d_etas_hgt_w[i]){
+            zidx_w=i+1;
+            break;
+        }
+    }
+
+    if(zidx_uv<0) {
+        printf("Invalid zidx_uv error.\n");
+        zidx_uv = 1;
+    }
+
+    if(zidx_w<0) {
+        printf("Invalid zidx_w error.\n");
+        zidx_w = 1;
     }
 
     float x0 = p.x/1500.0-xidx;
@@ -291,26 +304,20 @@ __global__ void move_puffs_by_wind(
     float x1 = 1-x0;
     float y1 = 1-y0;
 
-    float xwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].UGRD
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].UGRD
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].UGRD
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].UGRD;
+    float xwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].UGRD
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].UGRD
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].UGRD
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].UGRD;
 
-    float ywind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].VGRD
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].VGRD
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].VGRD
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].VGRD;
+    float ywind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].VGRD
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].VGRD
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].VGRD
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].VGRD;
 
-    float zwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].DZDT
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].DZDT
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].DZDT
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].DZDT;
-
-
-
-    // p.x += xwind*d_dt*0.00000001;
-    // p.y += ywind*d_dt*0.00000001;
-    // p.z += zwind*d_dt*0.00000001;
+    float zwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_w].DZDT
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_w].DZDT
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_w].DZDT
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_w].DZDT;
 
     p.x += xwind*d_dt;
     p.y += ywind*d_dt;
@@ -365,13 +372,18 @@ __global__ void wet_scavenging(
 
     int xidx = int(p.x/1500.0);
     int yidx = int(p.y/1500.0);
-    int zidx = 1;
+    int zidx_pres = 1;
 
-    for(int i=0; i<dimZ_etas-1; i++){
-        if(p.z<d_etas_hgt[i]){
-            zidx=i+1;
+    for(int i=0; i<dimZ_pres-1; i++){
+        if(p.z<device_meteorological_data_pres[xidx*(dimY)*(dimZ_pres) + yidx*(dimZ_pres) + i].HGT){
+            zidx_pres=i+1;
             break;
         }
+    }
+
+    if(zidx_pres<0) {
+        printf("Invalid zidx_pres error.\n");
+        zidx_pres = 1;
     }
 
     float x0 = p.x/1500.0-xidx;
@@ -380,10 +392,10 @@ __global__ void wet_scavenging(
     float x1 = 1-x0;
     float y1 = 1-y0;
 
-    float Relh = x1*y1*device_meteorological_data_pres[xidx*(dimY)*(dimZ_pres) + yidx*(dimZ_pres) + zidx].RH
-                +x0*y1*device_meteorological_data_pres[(xidx+1)*(dimY)*(dimZ_pres) + yidx*(dimZ_pres) + zidx].RH
-                +x1*y0*device_meteorological_data_pres[xidx*(dimY)*(dimZ_pres) + (yidx+1)*(dimZ_pres) + zidx].RH
-                +x0*y0*device_meteorological_data_pres[(xidx+1)*(dimY)*(dimZ_pres) + (yidx+1)*(dimZ_pres) + zidx].RH;
+    float Relh = x1*y1*device_meteorological_data_pres[xidx*(dimY)*(dimZ_pres) + yidx*(dimZ_pres) + zidx_pres].RH
+                +x0*y1*device_meteorological_data_pres[(xidx+1)*(dimY)*(dimZ_pres) + yidx*(dimZ_pres) + zidx_pres].RH
+                +x1*y0*device_meteorological_data_pres[xidx*(dimY)*(dimZ_pres) + (yidx+1)*(dimZ_pres) + zidx_pres].RH
+                +x0*y0*device_meteorological_data_pres[(xidx+1)*(dimY)*(dimZ_pres) + (yidx+1)*(dimZ_pres) + zidx_pres].RH;
 
     float Lambda = 3.5e-5*(Relh-0.8)/(1.0-0.8);
 
@@ -423,39 +435,54 @@ __global__ void puff_dispersion_update(
 
     int xidx = int(p.x/1500.0);
     int yidx = int(p.y/1500.0);
-    int zidx = 1;
+    int zidx_uv = 1;
+    int zidx_w = 1;
 
     for(int i=0; i<dimZ_etas-1; i++){
-        if(p.z<d_etas_hgt[i]){
-            zidx=i+1;
+        if(p.z<d_etas_hgt_uv[i]){
+            zidx_uv=i+1;
             break;
         }
     }
 
-    if(zidx<0) {
-        printf("Invalid zidx error.\n");
-        zidx = 1;
+    for(int i=0; i<dimZ_etas-1; i++){
+        if(p.z<d_etas_hgt_w[i]){
+            zidx_w=i+1;
+            break;
+        }
+    }
+
+    if(zidx_uv<0) {
+        printf("Invalid zidx_uv error.\n");
+        zidx_uv = 1;
+    }
+
+    if(zidx_w<0) {
+        printf("Invalid zidx_w error.\n");
+        zidx_w = 1;
     }
 
     float x0 = p.x/1500.0-xidx;
     float y0 = p.y/1500.0-yidx;
+
     float x1 = 1-x0;
     float y1 = 1-y0;
 
-    float xwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].UGRD
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].UGRD
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].UGRD
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].UGRD;
+    float xwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].UGRD
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].UGRD
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].UGRD
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].UGRD;
 
-    float ywind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].VGRD
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].VGRD
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].VGRD
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].VGRD;
+    float ywind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].VGRD
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_uv].VGRD
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].VGRD
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_uv].VGRD;
 
-    float zwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].DZDT
-                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx].DZDT
-                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].DZDT
-                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx].DZDT;
+    float zwind = x1*y1*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_w].DZDT
+                    +x0*y1*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + yidx*(dimZ_etas) + zidx_w].DZDT
+                    +x1*y0*device_meteorological_data_etas[xidx*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_w].DZDT
+                    +x0*y0*device_meteorological_data_etas[(xidx+1)*(dimY)*(dimZ_etas) + (yidx+1)*(dimZ_etas) + zidx_w].DZDT;
+
 
     float vel = sqrt(xwind*xwind + ywind*ywind + zwind*zwind);
 
