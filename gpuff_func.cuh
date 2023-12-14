@@ -1,3 +1,4 @@
+
 #include "gpuff.cuh"
 
 Gpuff::Gpuff() 
@@ -379,5 +380,260 @@ void Gpuff::conc_calc_val(){
     delete[] h_concs;
     cudaFree(d_grid);
     cudaFree(d_concs);
+
+}
+
+
+
+void Gpuff::time_update_RCAP(){
+
+    cudaError_t err = cudaGetLastError();
+    
+    float currentTime = 0.0f;
+    int threadsPerBlock = 256;
+    int blocks = (puffs.size() + threadsPerBlock - 1) / threadsPerBlock;
+    int timestep = 0;
+    float activationRatio = 0.0;
+
+    int blockSize = 128;
+    int totalThreads = 48 * nop;
+    int numBlocks = (totalThreads + blockSize - 1) / blockSize;    
+
+    while(currentTime <= time_end){
+
+        activationRatio = currentTime / time_end;
+
+        update_puff_flags<<<blocks, threadsPerBlock>>>
+            (d_puffs, activationRatio);
+        cudaDeviceSynchronize();
+
+        time_inout_RCAP<<<blocks, threadsPerBlock>>>
+        (d_puffs, d_RCAP_windir, d_RCAP_winvel, d_radi, currentTime, d_size, d_vdepo);
+        cudaDeviceSynchronize();
+
+        move_puffs_by_wind_RCAP<<<blocks, threadsPerBlock>>>
+            (d_puffs, d_RCAP_windir, d_RCAP_winvel, d_radi);
+        cudaDeviceSynchronize();
+
+        // dry_deposition<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        // wet_scavenging<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        // radioactive_decay<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        puff_dispersion_update_RCAP<<<blocks, threadsPerBlock>>>
+            (d_puffs, d_RCAP_windir, d_RCAP_winvel, d_radi);
+        cudaDeviceSynchronize();
+
+        // accumulate_conc_RCAP<<<numBlocks, blockSize>>>(d_puffs, d_receptors);
+        // cudaDeviceSynchronize();
+
+        err = cudaGetLastError();
+        if (err != cudaSuccess) 
+            printf("CUDA error: %s, timestep = %d\n", cudaGetErrorString(err), timestep);
+
+        currentTime += dt;
+        timestep++;
+
+        if(timestep % freq_output==0){
+            printf("-------------------------------------------------\n");
+            printf("Time : %f\tsec\n", currentTime);
+            printf("Time steps : \t%d of \t%d\n", timestep, (int)(time_end/dt));
+
+            //puff_output_ASCII(timestep);
+            puff_output_binary(timestep);
+
+            accumulate_conc_RCAP<<<numBlocks, blockSize>>>(d_puffs, d_receptors);
+            cudaDeviceSynchronize();
+
+            //receptor_output_binary_RCAP(timestep);
+        }
+
+    }
+
+    for(int i=0; i<nop; i++){
+        std::cout << std::endl;
+        std::cout << "puff[" << i << "].tin: ";
+        for(int j=0; j< RNUM; j++) std::cout << puffs[i].tin[j] << " ";
+        std::cout << std::endl;
+
+        std::cout << "puff[" << i << "].tout: ";
+        for(int j=0; j< RNUM; j++) std::cout << puffs[i].tout[j] << " ";
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "puff[" << i << "].conc" << std::endl;
+        std::cout << "1_Xe      2_I       3_Cs      4_Te      5_Sr      6_Ru      7_La      8_Ce      9_Ba" << std::endl;
+        for (int j = 0; j < NNUM; j++) std::cout << puffs[i].conc_arr[j] << " ";
+        std::cout << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "puff[" << i << "].fallout" << std::endl;
+        std::cout << "           1_Xe      2_I       3_Cs      4_Te      5_Sr      6_Ru      7_La      8_Ce      9_Ba" << std::endl;
+        for (int j = 0; j < RNUM; j++) {
+            std::cout << "[Sector " << j + 1 << "] ";
+            for (int k = 0; k < NNUM; k++) std::cout << std::scientific << std::setprecision(3) << puffs[i].fallout[k][j] << " ";
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        std::cout << "puff[" << i << "].fd" << std::endl;
+        std::cout << "           1_Xe      2_I       3_Cs      4_Te      5_Sr      6_Ru      7_La      8_Ce      9_Ba" << std::endl;
+        for (int j = 0; j < RNUM; j++) {
+            std::cout << "[Sector " << j + 1 << "] ";
+            for (int k = 0; k < NNUM; k++) std::cout << std::scientific << puffs[i].fd[k][j] << " ";
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        std::cout << "puff[" << i << "].fw" << std::endl;
+        std::cout << "           1_Xe      2_I       3_Cs      4_Te      5_Sr      6_Ru      7_La      8_Ce      9_Ba" << std::endl;
+        for (int j = 0; j < RNUM; j++) {
+            std::cout << "[Sector " << j + 1 << "] ";
+            for (int k = 0; k < NNUM; k++) std::cout << std::scientific << puffs[i].fw[k][j] << " ";
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+
+        std::cout << "---------------------------------------------" << std::endl;
+
+    }
+
+}
+
+
+void Gpuff::time_update_polar(){
+
+    cudaError_t err = cudaGetLastError();
+    
+    float currentTime = 0.0f;
+    int threadsPerBlock = 256;
+    int blocks = (puffs.size() + threadsPerBlock - 1) / threadsPerBlock;
+    int timestep = 0;
+    float activationRatio = 0.0;
+
+    int blockSize = 128;
+    int totalThreads = 48 * nop;
+    int numBlocks = (totalThreads + blockSize - 1) / blockSize;  
+
+    float dummys[48] = {0.};
+    float dummy = 0.0f;
+
+    printf("nop=%d\n", nop);
+
+    while(currentTime <= time_end){
+
+        activationRatio = currentTime / time_end;
+
+        update_puff_flags<<<blocks, threadsPerBlock>>>
+            (d_puffs, activationRatio);
+        cudaDeviceSynchronize();
+
+        move_puffs_by_wind<<<blocks, threadsPerBlock>>>
+            (d_puffs, 
+            device_meteorological_data_pres,
+            device_meteorological_data_unis,
+            device_meteorological_data_etas);
+        cudaDeviceSynchronize();
+
+        // dry_deposition<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        // wet_scavenging<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        // radioactive_decay<<<blocks, threadsPerBlock>>>
+        //     (d_puffs, 
+        //     device_meteorological_data_pres,
+        //     device_meteorological_data_unis,
+        //     device_meteorological_data_etas);
+        // cudaDeviceSynchronize();
+
+        puff_dispersion_update<<<blocks, threadsPerBlock>>>
+            (d_puffs, 
+            device_meteorological_data_pres,
+            device_meteorological_data_unis,
+            device_meteorological_data_etas);
+        cudaDeviceSynchronize();
+
+        err = cudaGetLastError();
+        if (err != cudaSuccess) 
+            printf("CUDA error: %s, timestep = %d\n", cudaGetErrorString(err), timestep);
+
+        currentTime += dt;
+        timestep++;
+
+        if(timestep % freq_output==0){
+            printf("-------------------------------------------------\n");
+            printf("Time : %f\tsec\n", currentTime);
+            printf("Time steps : \t%d of \t%d\n", timestep, (int)(time_end/dt));
+
+            //puff_output_ASCII(timestep);
+            puff_output_binary(timestep);
+
+            accumulate_conc_RCAP<<<numBlocks, blockSize>>>(d_puffs, d_receptors);
+            cudaDeviceSynchronize();
+
+            receptor_output_binary_RCAP(timestep);
+
+            cudaMemcpy(receptors.data(), d_receptors, receptors.size() * sizeof(receptors_RCAP), cudaMemcpyDeviceToHost);
+            dummy = receptors[0].conc;//14
+            //cudaMemcpyFromSymbol(&dummy, d_receptors[15].conc, sizeof(float));
+            con1.push_back(dummy);
+            dummy = receptors[16].conc;//30
+            //cudaMemcpyFromSymbol(&dummy, d_receptors[31].conc, sizeof(float));
+            con2.push_back(dummy);
+            dummy = receptors[32].conc;//46
+            //cudaMemcpyFromSymbol(&dummy, d_receptors[47].conc, sizeof(float));
+            con3.push_back(dummy);
+        }
+
+    }
+    //for (float element : con1) std::cout << element << std::endl;
+
+
+
+    std::ofstream outFile1("output1.txt");
+    for (float element : con1) outFile1 << element << std::endl;
+    outFile1.close();
+
+    std::ofstream outFile2("output2.txt");
+    for (float element : con2) outFile2 << element << std::endl;
+    outFile2.close();
+
+    std::ofstream outFile3("output3.txt");
+    for (float element : con3) outFile3 << element << std::endl;
+    outFile3.close();
+
+
+
+    // printf("-------------------------------------------------\n");
+    // printf("Time : %f\n\tsec", currentTime);
+    // printf("Time steps : \t%d of \t%d\n", timestep, (int)(time_end/dt));
+    // printf("size = %d\n", puffs.size());
+    // puff_output_ASCII(timestep);
 
 }

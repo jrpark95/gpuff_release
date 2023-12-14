@@ -1,5 +1,6 @@
 input/ldapsdata/*
 output/*
+receptors/*
 grids/*
 grids_csv/*
 gpuff

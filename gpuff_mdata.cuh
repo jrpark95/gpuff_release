@@ -487,3 +487,38 @@ void Gpuff::read_meteorological_data(
     delete[] host_data_etas;
 
 }
+
+
+void Gpuff::read_meteorological_data_RCAP(){
+    std::ifstream file(".\\input\\RCAPdata\\METEO.inp");
+    std::string line;
+
+    std::getline(file, line);
+    std::getline(file, line);
+
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        int num1, num2, num3, num4, num5;
+        if (!(iss >> num1 >> num2 >> num3 >> num4 >> num5)) { break; }
+
+        int last = num4 % 10;
+
+        RCAP_windir.push_back(static_cast<float>(num3)*PI/8.0f);
+        RCAP_winvel.push_back(static_cast<float>(num4/10)/10.0f); // (m/s)
+        RCAP_stab.push_back(static_cast<int>(last));
+    }
+
+    // for(int i=0; i<32; i++){
+    //     std::cout << RCAP_windir[i] << " ";
+    // }
+    // std::cout << std::endl;
+
+    cudaMalloc((void**)&d_RCAP_windir, RCAP_windir.size() * sizeof(float));
+    cudaMalloc((void**)&d_RCAP_winvel, RCAP_winvel.size() * sizeof(float));
+    cudaMalloc((void**)&d_RCAP_stab, RCAP_stab.size() * sizeof(int));
+
+    cudaMemcpy(d_RCAP_windir, RCAP_windir.data(), RCAP_windir.size() * sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(d_RCAP_winvel, RCAP_winvel.data(), RCAP_winvel.size() * sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(d_RCAP_stab, RCAP_stab.data(), RCAP_stab.size() * sizeof(int), cudaMemcpyHostToDevice);
+
+}

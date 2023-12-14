@@ -1,0 +1,268 @@
+﻿  Compiling CUDA source file main.cu...
+  
+  C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\bin\HostX64\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include"  -G   --keep-dir x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\x64\Debug\main.cu.obj "C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\main.cu" 
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(113): warning #1866-D: attribute does not apply to any entity
+        __declspec(__device__) __declspec(__host__) struct Puffcenter{
+                                          ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(179): warning #1866-D: attribute does not apply to any entity
+        __declspec(__device__) __declspec(__host__) struct receptors_RCAP{
+                                          ^
+  
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\cuda_runtime_api.h(11800): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(113): warning #1866-D: attribute does not apply to any entity
+        __declspec(__device__) __declspec(__host__) struct Puffcenter{
+                                          ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(179): warning #1866-D: attribute does not apply to any entity
+        __declspec(__device__) __declspec(__host__) struct receptors_RCAP{
+                                          ^
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_kernels.cuh(838): warning #177-D: variable "fd_temp" was declared but never referenced
+            float fd_temp = 1.0;
+                  ^
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_kernels.cuh(943): warning #177-D: variable "contribution" was declared but never referenced
+        float contribution = 0.0;
+              ^
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(76): warning #177-D: variable "valt" was declared but never referenced
+        int valt;
+            ^
+  
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(534): warning #177-D: variable "dummys" was declared but never referenced
+        float dummys[48] = {0.};
+              ^
+  
+  main.cu
+  tmpxft_00003974_00000000-7_main.cudafe1.cpp
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\include\driver_types.h(1329): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(74): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(75): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(76): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(77): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(79): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_struct.cuh(80): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(49): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(50): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(150): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(150): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(150): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(163): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(163): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff.cuh(163): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(97): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(167): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(202): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(213): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(222): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(234): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(247): warning C4244: '인수': 'const double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(263): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(264): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(280): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_init.cuh(297): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(5): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(6): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(8): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(9): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(11): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(12): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(14): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(16): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(17): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(18): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(26): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(27): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(29): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(30): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(32): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(33): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(35): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(37): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(38): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(39): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(100): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(128): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(167): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(192): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(231): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(265): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(280): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(295): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(309): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(323): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(337): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(365): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(422): warning C4305: '=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(76): warning C4101: 'valt' :참조되지 않은 지역 변수입니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_mdata.cuh(506): warning C4244: '인수': 'double'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              _Ty=float
+          ]
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(108): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(108): warning C4267: '초기화 중': 'size_t'에서 'const int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(122): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(202): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(267): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(394): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\PARK\Desktop\gpuff-RCAP\CudaRuntime1\gpuff_func.cuh(526): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CudaRuntime1.vcxproj -> C:\Users\PARK\Desktop\gpuff-RCAP\x64\Debug\CudaRuntime1.exe

@@ -1,8 +1,8 @@
 # SIMULATION SETTINGS #
-Time_end(s): 1200.0
-dt(s): 1.0
-Plot_output_freq: 30
-Total_number_of_puff: 800
+Time_end(s): 172800.0
+dt(s): 10.0
+Plot_output_freq: 10
+Total_number_of_puff: 2000
 
 # Calculation Mode for Sigma (Rural = 1, Urban = 0)
 Rural/Urban: 1

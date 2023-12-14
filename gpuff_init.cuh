@@ -219,7 +219,8 @@ void Gpuff::puff_initialization_val(){
             float y = sources[conc.location - 1].lon;
             float z = sources[conc.location - 1].height;
 
-            puffs.push_back(Puffcenter(x, y, z, decayConstants[conc.sourceterm - 1], conc.value*time_end/nop, drydepositionVelocity[conc.sourceterm - 1], i + 1));
+            puffs.push_back(Puffcenter(x, y, z, decayConstants[conc.sourceterm - 1], conc.value*time_end/nop, 
+                drydepositionVelocity[conc.sourceterm - 1], i + 1, 0, 0, 0));
         }
     }
 
@@ -243,7 +244,9 @@ void Gpuff::puff_initialization(){
                 sources[conc.location - 1].lon);
             float z = sources[conc.location - 1].height;
 
-            puffs.push_back(Puffcenter(x, y, z, decayConstants[conc.sourceterm - 1], conc.value, drydepositionVelocity[conc.sourceterm - 1], i + 1));
+            puffs.push_back(Puffcenter(x, y, z, decayConstants[conc.sourceterm - 1], conc.value, 
+                drydepositionVelocity[conc.sourceterm - 1], i + 1, 0, 0, 0));
+
         }
     }
 
@@ -253,3 +256,50 @@ void Gpuff::puff_initialization(){
     });
 }
 
+
+void Gpuff::puff_initialization_RCAP(){
+
+    for (int i=0; i<nop; i++){
+        int tt = floor((float)i/(float)nop*(float)time_end/3600.0);
+        puffs.push_back(Puffcenter(0.0f, 0.0f, 0.0f, 0.0f, 5.0e+13, 
+            0.0f, i + 1, RCAP_winvel[tt], RCAP_windir[tt], RCAP_stab[tt]));
+    }
+
+    // Sort the puffs by timeidx
+    std::sort(puffs.begin(), puffs.end(), [](const Puffcenter& a, const Puffcenter& b){
+        return a.timeidx < b.timeidx;
+    });
+
+    //float radii[] = {100000.0f/2.0f, 300000.0f/2.0f, 500000.0f/2.0f};
+    //float radii[] = {1609.34f, 16093.40f, 80467.20f, 804672.00f};
+
+    float angleIncrement = 22.5;
+
+    for (float radius : radi) {
+        for (int i = 0; i < 16; ++i) {
+            float angle = angleIncrement * i * PI / 180.0;
+            receptors.push_back(receptors_RCAP(radius * cos(angle), radius * sin(angle)));
+        }
+    }
+
+    cudaMalloc(&d_receptors, receptors.size() * sizeof(receptors_RCAP));
+    cudaMemcpy(d_receptors, receptors.data(), receptors.size() * sizeof(receptors_RCAP), cudaMemcpyHostToDevice);
+
+}
+
+void Gpuff::receptor_initialization_ldaps(){
+
+    float radii[] = {400.0f, 1200.0f, 2000.0f};
+    float angleIncrement = 22.5;
+
+    for (float radius : radii) {
+        for (int i = 0; i < 16; ++i) {
+            float angle = angleIncrement * i * PI / 180.0;
+            receptors.push_back(receptors_RCAP(751563.8f + radius * cos(angle), 420629.3f + radius * sin(angle)));
+        }
+    }
+
+    cudaMalloc(&d_receptors, receptors.size() * sizeof(receptors_RCAP));
+    cudaMemcpy(d_receptors, receptors.data(), receptors.size() * sizeof(receptors_RCAP), cudaMemcpyHostToDevice);
+
+}

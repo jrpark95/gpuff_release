@@ -1,3 +1,4 @@
+
 #include "gpuff.cuh"
 
 int Gpuff::countflag(){
@@ -64,6 +65,12 @@ void Gpuff::puff_output_ASCII(int timestep){
 
 
 void Gpuff::swapBytes(float& value){
+    char* valuePtr = reinterpret_cast<char*>(&value);
+    std::swap(valuePtr[0], valuePtr[3]);
+    std::swap(valuePtr[1], valuePtr[2]);
+}
+
+void Gpuff::swapBytes_int(int& value){
     char* valuePtr = reinterpret_cast<char*>(&value);
     std::swap(valuePtr[0], valuePtr[3]);
     std::swap(valuePtr[1], valuePtr[2]);
@@ -157,6 +164,42 @@ void Gpuff::puff_output_binary(int timestep){
         float vval = puffs[i].conc;
         swapBytes(vval); 
         vtkFile.write(reinterpret_cast<char*>(&vval), sizeof(float));
+    }
+
+    vtkFile << "SCALARS windvel float 1\n";
+    vtkFile << "LOOKUP_TABLE default\n";
+    for (int i = 0; i < part_num; ++i){
+        if(!puffs[i].flag) continue;
+        float vval = puffs[i].windvel;
+        swapBytes(vval); 
+        vtkFile.write(reinterpret_cast<char*>(&vval), sizeof(float));
+    }
+
+    vtkFile << "SCALARS windir float 1\n";
+    vtkFile << "LOOKUP_TABLE default\n";
+    for (int i = 0; i < part_num; ++i){
+        if(!puffs[i].flag) continue;
+        float vval = puffs[i].windir;
+        swapBytes(vval); 
+        vtkFile.write(reinterpret_cast<char*>(&vval), sizeof(float));
+    }
+    
+    vtkFile << "SCALARS stab int 1\n";
+    vtkFile << "LOOKUP_TABLE default\n";
+    for (int i = 0; i < part_num; ++i){
+        if(!puffs[i].flag) continue;
+        int vval = puffs[i].stab;
+        swapBytes_int(vval); 
+        vtkFile.write(reinterpret_cast<char*>(&vval), sizeof(int));
+    }
+
+    vtkFile << "SCALARS tidx int 1\n";
+    vtkFile << "LOOKUP_TABLE default\n";
+    for (int i = 0; i < part_num; ++i){
+        if(!puffs[i].flag) continue;
+        int vval = puffs[i].timeidx;
+        swapBytes_int(vval); 
+        vtkFile.write(reinterpret_cast<char*>(&vval), sizeof(int));
     }
 
 
@@ -343,4 +386,65 @@ void Gpuff::grid_output_csv(RectangleGrid& rect, float* h_concs){
 
     csvFile.close();
 
+}
+
+void Gpuff::receptor_output_binary_RCAP(int timestep){
+
+    cudaMemcpy(receptors.data(), d_receptors, 16*RNUM * sizeof(receptors_RCAP), cudaMemcpyDeviceToHost);
+
+    std::ostringstream filenameStream;
+
+    std::string path;
+
+    #ifdef _WIN32
+        path = ".\\receptors";
+        _mkdir(path.c_str());
+        filenameStream << ".\\receptors\\receptors_" << std::setfill('0') 
+        << std::setw(5) << timestep << ".vtk";
+    #else
+        path = "./receptors";
+        mkdir(path.c_str(), 0777);
+        filenameStream << "./receptors/receptors_" << std::setfill('0') 
+        << std::setw(5) << timestep << ".vtk";
+    #endif
+
+
+    std::string filename = filenameStream.str();
+
+    std::ofstream vtkFile(filename, std::ios::binary);
+
+    if (!vtkFile.is_open()){
+        std::cerr << "Cannot open file for writing: " << filename << std::endl;
+        return;
+    }
+
+    vtkFile << "# vtk DataFile Version 3.0\n";
+    vtkFile << "receptors_RCAP data\n";
+    vtkFile << "BINARY\n";
+    vtkFile << "DATASET POLYDATA\n";
+
+    vtkFile << "POINTS " << receptors.size() << " float\n";
+    for (const auto& receptor : receptors) {
+        float x = receptor.x, y = receptor.y, z = 0.0f;  
+
+        swapBytes(x);
+        swapBytes(y);
+
+        vtkFile.write(reinterpret_cast<char*>(&x), sizeof(float));
+        vtkFile.write(reinterpret_cast<char*>(&y), sizeof(float));
+        vtkFile.write(reinterpret_cast<char*>(&z), sizeof(float));
+    }
+
+    vtkFile << "POINT_DATA " << receptors.size() << "\n";
+    vtkFile << "SCALARS concentration float 1\n"; 
+    vtkFile << "LOOKUP_TABLE default\n";
+    for (const auto& receptor : receptors) {
+        float conc = receptor.conc;
+
+        swapBytes(conc);
+
+        vtkFile.write(reinterpret_cast<char*>(&conc), sizeof(float));
+    }
+
+    vtkFile.close();
 }

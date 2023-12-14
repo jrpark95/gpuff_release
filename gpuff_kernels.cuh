@@ -758,3 +758,222 @@ __global__ void accumulate_conc_val(
 
     }
 }
+
+__global__ void move_puffs_by_wind_RCAP(
+    Gpuff::Puffcenter* d_puffs, 
+    float* d_RCAP_windir,
+    float* d_RCAP_winvel,
+    float* d_radi) 
+{
+
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if(idx >= d_nop) return;
+
+    Gpuff::Puffcenter& p = d_puffs[idx];
+    if(!p.flag) return;
+
+    //int tt = floor((float)p.timeidx/(float)d_nop*(float)d_time_end/3600.0);
+
+    // float xwind = d_RCAP_winvel[timeidx]*cos(d_RCAP_windir[timeidx]);
+    // float ywind = d_RCAP_winvel[timeidx]*sin(d_RCAP_windir[timeidx]);
+
+    // float xwind = d_RCAP_winvel[tt]*cos(d_RCAP_windir[tt]);
+    // float ywind = d_RCAP_winvel[tt]*sin(d_RCAP_windir[tt]);
+
+    float xwind = p.windvel*cos(p.windir);
+    float ywind = p.windvel*sin(p.windir);
+
+    p.x += xwind*d_dt;
+    p.y += ywind*d_dt;
+
+}
+
+__global__ void time_inout_RCAP(
+    Gpuff::Puffcenter* d_puffs, 
+    float* d_RCAP_windir,
+    float* d_RCAP_winvel,
+    float* d_radi,
+    float currentTime,
+    float** d_size,
+    float* d_vdepo) 
+{
+
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if(idx >= d_nop) return;
+
+    Gpuff::Puffcenter& p = d_puffs[idx];
+    if(!p.flag) return;
+
+    if(p.tin[0]<1.0e-8) {
+        p.tin[0] = currentTime;
+    }
+
+    float hdist = 1.0*d_radi[p.head_radidx] + 0.0*d_radi[p.head_radidx+1] 
+                   - sqrt(p.x*p.x+p.y*p.y) - p.sigma_h*2.15;
+    // float tdist = 0.5*d_radi[p.tail_radidx] + 0.5*d_radi[p.tail_radidx+1] - sqrt(p.x*p.x+p.y*p.y) + p.sigma_h*2.15;
+    float tdist = - sqrt(p.x*p.x+p.y*p.y) + 1.0*d_radi[p.tail_radidx] 
+                    + 0.0*d_radi[p.tail_radidx+1] + p.sigma_h*2.15;
+
+    //if(hdist<0) {
+    if (hdist * p.head_dist < 0) {
+
+        if(idx==1) {
+            printf("hdist = %f, head_dist = %f\n", hdist, p.head_dist);
+            printf("head_radidx = %d, currentTime = %f\n", p.head_radidx, currentTime);
+        }
+        p.tin[p.head_radidx+1] = currentTime;
+        p.head_radidx++;
+        hdist = 0.0;
+    }
+    //if(tdist<0) {
+    if (tdist * p.tail_dist < 0) {
+        if(idx==10) {
+            printf("tdist = %f, tail_dist = %f\n", tdist, p.tail_dist);
+            printf("tail_radidx = %d, currentTime = %f\n", p.tail_radidx, currentTime);
+        }
+        p.tout[p.tail_radidx] = currentTime;
+
+        tdist = 0.0;
+
+        float fd_temp = 1.0;
+        float H = 1000.0;
+        float rain = 1.0;
+
+        float C1 = 1.89e-5;
+        float C2 = 0.664;
+
+        for (int iNuclide = 0; iNuclide < 9; iNuclide++) {
+            if (iNuclide == 0) continue;
+            p.fw[iNuclide][p.tail_radidx] = exp(-C1 * pow(rain, C2) * (p.tout[p.tail_radidx] - p.tin[p.tail_radidx]));
+
+            for (int iSize = 0; iSize < 10; iSize++) {
+
+                p.fd[iNuclide][p.tail_radidx] = exp(-d_vdepo[iSize] * (p.tout[p.tail_radidx] - p.tin[p.tail_radidx]) / H);
+                p.fallout[iNuclide][p.tail_radidx] += d_size[iNuclide][iSize] * (1 - p.fd[iNuclide][p.tail_radidx] * p.fw[iNuclide][p.tail_radidx]);
+                //p.fallout[p.tail_radidx] = (1 - p.fd[p.tail_radidx] * p.fw[p.tail_radidx]);
+
+            }
+            //p.conc -= p.conc*p.fallout[p.tail_radidx]; // need multiply "DCF[iNuclide]"
+            p.conc_arr[iNuclide] = p.conc_arr[iNuclide] * (1 - p.fallout[iNuclide][p.tail_radidx]);
+        }
+        //p.conc = p.conc * (1-p.fallout[p.tail_radidx]); // need multiply "DCF[iNuclide]"
+        p.tail_radidx++;
+    }
+
+    //if (idx == 10) {
+    //    //printf("tdist = %f, tail_dist = %f\n", tdist, p.tail_dist);
+    //    //printf("tail_radidx = %d, currentTime = %f\n", p.tail_radidx, currentTime);
+    //    //printf("tout[%d] = %f\n", p.tail_radidx, p.tout[p.tail_radidx - 1]);
+    //}
+
+    float xwind = p.windvel*cos(p.windir);
+    float ywind = p.windvel*sin(p.windir);
+
+
+    p.x += xwind*d_dt;
+    p.y += ywind*d_dt;
+
+    p.head_dist = hdist;
+    p.tail_dist = tdist;
+
+}
+
+
+__global__ void puff_dispersion_update_RCAP(
+    Gpuff::Puffcenter* d_puffs, 
+    float* d_RCAP_windir,
+    float* d_RCAP_winvel,
+    float* d_radi) 
+{
+
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    if(idx >= d_nop) return;
+
+    Gpuff::Puffcenter& p = d_puffs[idx];
+    if(!p.flag) return;
+
+    // int tt = floor((float)p.timeidx/(float)d_nop*(float)d_time_end/3600.0);
+
+    // // float xwind = d_RCAP_winvel[timeidx]*cos(d_RCAP_windir[timeidx]);
+    // // float ywind = d_RCAP_winvel[timeidx]*sin(d_RCAP_windir[timeidx]);
+
+    // float xwind = d_RCAP_winvel[tt]*cos(d_RCAP_windir[tt]);
+    // float ywind = d_RCAP_winvel[tt]*sin(d_RCAP_windir[tt]);
+
+    float xwind = p.windvel*cos(p.windir);
+    float ywind = p.windvel*sin(p.windir);
+
+    float vel = sqrt(xwind*xwind + ywind*ywind);
+
+    
+
+    int PasquillCategory = p.stab-1;
+
+    float new_virtual_distance_h = NewtonRaphson_h(PasquillCategory, p.sigma_h, p.virtual_distance) + vel*d_dt;
+    //float new_virtual_distance_z = NewtonRaphson_z(PasquillCategory, p.sigma_z, p.virtual_distance) + vel*d_dt;
+
+    if(d_isPG){
+        p.sigma_h = Sigma_h_Pasquill_Gifford(PasquillCategory, new_virtual_distance_h);
+        //p.sigma_z = Sigma_z_Pasquill_Gifford(PasquillCategory, new_virtual_distance_z);
+    }
+    else{
+        p.sigma_h = Sigma_h_Briggs_McElroy_Pooler(PasquillCategory, new_virtual_distance_h);
+        //p.sigma_z = Sigma_z_Briggs_McElroy_Pooler(PasquillCategory, new_virtual_distance_z);
+    }
+
+    p.virtual_distance = new_virtual_distance_h;
+
+}
+
+
+__global__ void accumulate_conc_RCAP(
+    Gpuff::Puffcenter* d_puffs, 
+    Gpuff::receptors_RCAP* d_receptors)
+{
+    int globalIdx = blockIdx.x * blockDim.x + threadIdx.x;
+    int gridIdx = globalIdx % 48;
+    int puffIdx = globalIdx / 48;
+
+    if(puffIdx >= d_nop) return;
+
+    Gpuff::Puffcenter& p = d_puffs[puffIdx];
+    Gpuff::receptors_RCAP& g = d_receptors[gridIdx];
+
+    g.conc = 0.0;
+    float contribution = 0.0;
+
+    // if(p.flag){
+    //     float dx = g.x - p.x;
+    //     float dy = g.y - p.y;
+
+    //     //printf("dx = %f, dy = %f\n", dx, dy);
+
+    //     if(p.sigma_h != 0.0f){
+    //         contribution = p.conc/(pow(2*PI,1.0)*p.sigma_h*p.sigma_h)
+    //                             *exp(-0.5*abs(dx*dx/p.sigma_h/p.sigma_h))
+    //                             *exp(-0.5*abs(dy*dy/p.sigma_h/p.sigma_h));
+
+    //         atomicAdd(&g.conc, contribution);
+    //     }
+
+    //     //printf("%f\n", g.conc);
+    // }
+
+
+    if(p.flag){
+        float dx = g.x - p.x;
+        float dy = g.y - p.y;
+        float dz = g.z - p.z;
+        float dzv = g.z + p.z;
+        if(p.sigma_h != 0.0f && p.sigma_z != 0.0f){
+            float contribution = p.conc/(pow(2*PI,1.5)*p.sigma_h*p.sigma_h*p.sigma_z)
+                                *exp(-0.5*abs(dx*dx/p.sigma_h/p.sigma_h))
+                                *exp(-0.5*abs(dy*dy/p.sigma_h/p.sigma_h))
+                                *(exp(-0.5*abs(dz*dz/p.sigma_z/p.sigma_z))
+                                +exp(-0.5*abs(dzv*dzv/p.sigma_z/p.sigma_z)));
+            //printf("%e, %e, %e, %e, %e\n", exp(-0.5*abs(dx*dx/p.sigma_h/p.sigma_h)), dx, p.sigma_h, dx/p.sigma_h, contribution);
+            atomicAdd(&g.conc, contribution);
+        }
+    }
+
+}
